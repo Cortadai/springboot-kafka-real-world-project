@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  kafkadb:
+    image: mysql:8.0
+    container_name: kafkadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: 'kafkadb'
+      MYSQL_USER: 'userdb'
+      MYSQL_PASSWORD: '1234'
+    ports:
+      - '3396:3306'
+    volumes:
+      - kafkadb_data:/var/lib/mysql
+    networks:
+      - kafkanetwork
+volumes:
+  kafkadb_data:
+networks:
+  kafkanetwork:
+    name: "kafkanetwork"
+    driver: bridge
